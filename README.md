@@ -21,7 +21,7 @@ El proyecto sigue una estructura estrictamente modular bajo el paradigma de **Pr
 Para desplegar este dashboard de manera local en tu entorno de desarrollo, ejecuta los siguientes comandos en tu terminal:
 
 ### 1. Clonar el repositorio
-git clone [https://github.com/tu-usuario/dashboard_gastrovegan.git](https://github.com/tu-usuario/dashboard_gastrovegan.git)
+git clone https://github.com/SolMichelle/dashboard_gastrovegan
 cd dashboard_gastrovegan
 
 ### 2. Crear y activar un entorno virtual
