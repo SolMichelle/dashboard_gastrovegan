@@ -1,0 +1,9 @@
+# Requerimientos para la plataforma de inteligencia de datos gastronómicos veganos
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.13.0
+dash>=2.9.0
+lxml>=4.9.0
+
+# Instalaciones requeridas: pip install pandas plotly dash dash-bootstrap-components matplotlib seaborn
