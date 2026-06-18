@@ -11,7 +11,7 @@ La aplicación combina el procesamiento de datos estadísticos con una interfaz 
 El proyecto sigue una estructura estrictamente modular bajo el paradigma de **Programación Orientada a Objetos (POO)** e ingeniería de datos:
 
 * **Lenguaje:** Python 3.12+
-* **Procesamiento y Gobierno de Datos:** `Pandas` (con soporte del motor `lxml`) para la ingesta, limpieza, normalización y unificación de las fuentes mediante constantes de esquema.
+* **Procesamiento y Gobierno de Datos:** `Pandas` para la ingesta, limpieza, normalización y unificación de las fuentes mediante constantes de esquema.
 * **Visualización Estática (Capa de Servidor):** `Matplotlib` y `Seaborn` para la generación automatizada de diagramas de cajas (márgenes) y regresiones lineales exportados dinámicamente en formato `base64`.
 * **Visualización Interactiva y Frontend:** `Dash` y `Plotly Express` combinados con `dash_bootstrap_components` para una interfaz adaptativa bajo la guía de estilo *Eco-Clean*.
 
