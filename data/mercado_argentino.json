@@ -1,0 +1,26 @@
+[
+    {
+    "provincia_ciudad": "CABA",
+    "poblacion_densidad_km2": 15150.0,
+    "poder_adquisitivo_promedio_ars": 850000.0,
+    "plato_competencia_promedio_usd": 12.50
+    },
+    {
+    "provincia_ciudad": "Córdoba",
+    "poblacion_densidad_km2": 2800.0,
+    "poder_adquisitivo_promedio_ars": 620000.0,
+    "plato_competencia_promedio_usd": 9.50
+    },
+    {
+    "provincia_ciudad": "Mendoza",
+    "poblacion_densidad_km2": 1900.0,
+    "poder_adquisitivo_promedio_ars": 590000.0,
+    "plato_competencia_promedio_usd": 10.00
+    },
+    {
+    "provincia_ciudad": "Rosario",
+    "poblacion_densidad_km2": 5200.0,
+    "poder_adquisitivo_promedio_ars": 640000.0,
+    "plato_competencia_promedio_usd": 9.00
+    }
+]

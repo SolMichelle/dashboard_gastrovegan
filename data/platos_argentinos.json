@@ -1,0 +1,22 @@
+[
+    {"plato": "Milanesas con puré", "ingrediente_reemplazo": "Gírgolas, soja texturizada, seitán", "costo_insumos_ars": 7800, "categoria": "Minutas"},
+    {"plato": "Empanadas criollas", "ingrediente_reemplazo": "Soja texturizada o lentejas", "costo_insumos_ars": 5000, "categoria": "Entradas"},
+    {"plato": "Locro", "ingrediente_reemplazo": "Hongos o seitán", "costo_insumos_ars": 11000, "categoria": "Platos de Olla"},
+    {"plato": "Pastel de papa", "ingrediente_reemplazo": "Bolognesa de lentejas y soja", "costo_insumos_ars": 5900, "categoria": "Platos de Olla"},
+    {"plato": "Guiso de lentejas", "ingrediente_reemplazo": "Chorizo vegano", "costo_insumos_ars": 10000, "categoria": "Platos de Olla"},
+    {"plato": "Pizzas", "ingrediente_reemplazo": "Queso de papa o muzzarella de almendras", "costo_insumos_ars": 8100, "categoria": "Minutas"},
+    {"plato": "Focaccia de hierbas", "ingrediente_reemplazo": "Nada", "costo_insumos_ars": 0, "categoria": "Entradas"},
+    {"plato": "Facturas / Medialunas", "ingrediente_reemplazo": "Margarina vegetal", "costo_insumos_ars": 5500, "categoria": "Panadería"},
+    {"plato": "Cinnamon rolls", "ingrediente_reemplazo": "Método Tangzhong y leche de soja", "costo_insumos_ars": 3500, "categoria": "Panadería"},
+    {"plato": "Alfajores de maicena", "ingrediente_reemplazo": "Dulce de leche de vegano y lino", "costo_insumos_ars": 9500, "categoria": "Panadería"},
+    {"plato": "Flan casero", "ingrediente_reemplazo": "Leche de soja y dulce de leche de vegano", "costo_insumos_ars": 13000, "categoria": "Postres"},
+    {"plato": "Choripán vegano", "ingrediente_reemplazo": "Chorizo vegano", "costo_insumos_ars": 1000, "categoria": "Minutas"},
+    {"plato": "Canelones de verdura", "ingrediente_reemplazo": "Salsa blanca de soja y ricota de girasol", "costo_insumos_ars": 5000, "categoria": "Pastas"},
+    {"plato": "Sorrentinos de calabaza", "ingrediente_reemplazo": "Masa sin huevo (semolín y agua)", "costo_insumos_ars": 1650, "categoria": "Pastas"},
+    {"plato": "Humita en olla", "ingrediente_reemplazo": "Leche vegetal neutra", "costo_insumos_ars": 3500, "categoria": "Platos de Olla"},
+    {"plato": "Chipá", "ingrediente_reemplazo": "Fécula de mandioca y levadura nutricional", "costo_insumos_ars": 10500, "categoria": "Entradas"},
+    {"plato": "Tarta de jamón y queso", "ingrediente_reemplazo": "Tofu marinado y queso vegetal", "costo_insumos_ars": 13000, "categoria": "Minutas"},
+    {"plato": "Budín de banana", "ingrediente_reemplazo": "Manteca de maní", "costo_insumos_ars": 5000, "categoria": "Panadería"},
+    {"plato": "Cookies de chocolate", "ingrediente_reemplazo": "Semillas de lino activadas", "costo_insumos_ars": 2000, "categoria": "Panadería"},
+    {"plato": "Pastafrola de membrillo", "ingrediente_reemplazo": "Masa quebrada con aceite de girasol", "costo_insumos_ars": 1100, "categoria": "Panadería"}
+]

@@ -1,17 +1,25 @@
 import plotly.express as px
-import plotly.io as pio
 
-pio.renderers.default = "iframe"
-
-def grafico_barras(df, x: str, y: str):
-    # Agrupamos por la variable X (ej: ciudad) y promediamos el valor del precio (Y)
-    df_agrupado = df[[x, y]].groupby(x)[y].mean().reset_index()
-    
-    return px.bar(
-        df_agrupado,
-        x=y,
-        y=x,
-        orientation="h",
-        title=f"Promedio de {y.replace('_', ' ')}s por {x.replace('_', ' ')}".capitalize(),
-        color_discrete_sequence=['#1b4d3e'] # Verde culinario/sustentable
+def generar_grafico_barras_argentina(dataframe):
+    # Genera un gráfico interactivo 
+    fig = px.bar(
+        dataframe,
+        x="provincia_ciudad",
+        y="score_inversion",
+        text="score_inversion",
+        title="Índice de oportunidad de inversión por ciudad",
+        labels={
+            "provincia_ciudad": "Ciudad / Región",
+            "score_inversion": "Score de Viabilidad (Densidad × Poder Adquisitivo)"
+        },
+        color="score_inversion",
+        color_continuous_scale="Mint" 
     )
+    
+    fig.update_traces(textposition='outside')
+    fig.update_layout(
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        font_color="#2c3e50"
+    )
+    return fig
