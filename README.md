@@ -1,4 +1,4 @@
-# 📊 Plataforma de inteligencia de datos para gastronomía vegana
+# Plataforma de inteligencia de datos para gastronomía vegana
 
 Este proyecto desarrolla un **Dashboard analítico e interactivo** diseñado para consultores y dueños de restaurantes tradicionales. Su objetivo principal es mitigar el riesgo comercial y resolver el fenómeno del **"comensal veto"** (pérdida de grupos de clientes porque el local no ofrece opciones veganas reales) mediante la toma de decisiones basada en datos (*Data-Driven*).
 

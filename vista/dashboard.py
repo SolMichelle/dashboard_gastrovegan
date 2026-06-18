@@ -6,7 +6,7 @@ from vista.matplotlib_utils import cajas_y_bigotes
 from vista.seaborn_utils import dispersion
 from vista.plotly_utils import grafico_barras
 
-# Inicio usando el tema MINTY 
+# Inicio 
 app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 
 IMG_BASE64 = "data:image/png;base64,{}"
@@ -14,53 +14,110 @@ IMG_BASE64 = "data:image/png;base64,{}"
 df_render = df_final_mercado.copy()
 df_render['indice_registro'] = range(len(df_render))
 
-# CONTENEDOR PRINCIPAL CON LA GUÍA DE ESTILO
+# --- CÁLCULO DE MÉTRICAS COMPLEMENTARIAS  ---
+total_locales = len(df_final_mercado)
+precio_promedio_global_usd = round(df_final_mercado[Restaurante.COL_PRECIO].mean(), 2)
+
+
+if Restaurante.COL_PRECIO_ARS in df_final_mercado.columns:
+    precio_promedio_global_ars = df_final_mercado[Restaurante.COL_PRECIO_ARS].mean()
+    precio_maximo_ars = df_final_mercado[Restaurante.COL_PRECIO_ARS].max()
+""" else:
+    tasa_proxy = 1455.0
+    precio_promedio_global_ars = df_final_mercado[Restaurante.COL_PRECIO].mean() * tasa_proxy
+    precio_maximo_ars = df_final_mercado[Restaurante.COL_PRECIO].max() * tasa_proxy """
+
+# --- CONTENEDOR PRINCIPAL  ---
 app.layout = dbc.Container(fluid=True, style={"backgroundColor": "#fcfcfc", "padding": "30px"}, children=[
     
     # ENCABEZADO PRINCIPAL (Introducción al problema)
     dbc.Row(className="mb-5", children=[
         dbc.Col(style={"textAlign": "center"}, children=[
-            html.H1("Plataforma de Inteligencia Gastronómica Plant-Based", 
+            html.H1("Plataforma de inteligencia en gastronomía vegana en Argentina", 
                     style={"color": "#1b4d3e", "fontWeight": "bold", "fontSize": "28pt"}),
-            html.H5("Análisis de Oportunidades de Negocio y Mitigación del 'Comensal Veto' mediante Ciencia de Datos", 
+            html.H5("Análisis de oportunidades de negocio mediante Ciencia de Datos", 
                     style={"color": "#618274", "fontStyle": "italic"}),
             html.Hr(style={"borderColor": "#8fbc8f", "borderWidth": "2px", "width": "60%", "margin": "auto"})
         ])
     ]),
 
-    # SECCIÓN 1: KPIs MACRO (justificación del mercado con fuentes teóricas)
+    # SECCIÓN 1: KPIs MACRO REUNIDOS
     dbc.Row(className="mb-4 text-center", children=[
-        dbc.Col(md=4, children=[
+        dbc.Col(md=3, children=[
             dbc.Card(style={"backgroundColor": "#eef5f2", "border": "1px solid #cce2d7"}, children=[
                 dbc.CardBody([
                     html.H3("12.4%", style={"color": "#1b4d3e", "fontWeight": "bold"}),
-                    html.P("Crecimiento Anual Mercado Vegano (Grand View Research)", style={"color": "#7f8c8d", "fontSize": "9.5pt"})
+                    html.P("Crecimiento anual del mercado (Fuente: Grand View Research)", style={"color": "#7f8c8d", "fontSize": "9pt"})
                 ])
             ])
         ]),
-        dbc.Col(md=4, children=[
+        dbc.Col(md=3, children=[
             dbc.Card(style={"backgroundColor": "#eef5f2", "border": "1px solid #cce2d7"}, children=[
                 dbc.CardBody([
                     html.H3("60%", style={"color": "#1b4d3e", "fontWeight": "bold"}),
-                    html.P("Grupos que descartan locales sin opciones (Faunalytics)", style={"color": "#7f8c8d", "fontSize": "9.5pt"})
+                    html.P("Tasa de deserción por comensal veto (Fuente: Faunalytics)", style={"color": "#7f8c8d", "fontSize": "9pt"})
                 ])
             ])
         ]),
-        dbc.Col(md=4, children=[
+        dbc.Col(md=3, children=[
             dbc.Card(style={"backgroundColor": "#eef5f2", "border": "1px solid #cce2d7"}, children=[
                 dbc.CardBody([
-                    html.H3(f"{len(df_render)}", style={"color": "#1b4d3e", "fontWeight": "bold"}),
-                    html.P("Establecimientos Analizados en el Pipeline", style={"color": "#7f8c8d", "fontSize": "9.5pt"})
+                    html.H3(f"{total_locales}", style={"color": "#1b4d3e", "fontWeight": "bold"}),
+                    html.P("Locales competidores analizados", style={"color": "#7f8c8d", "fontSize": "9pt"})
                 ])
             ])
         ]),
+        dbc.Col(md=3, children=[
+            dbc.Card(style={"backgroundColor": "#eef5f2", "border": "1px solid #cce2d7"}, children=[
+                dbc.CardBody([
+                    html.H3(f"${precio_promedio_global_usd} USD", style={"color": "#1b4d3e", "fontWeight": "bold"}),
+                    html.P("Precio promedio general", style={"color": "#7f8c8d", "fontSize": "9pt"})
+                ])
+            ])
+        ])
+    ]),
+
+    # SECCIÓN DE NUEVOS KPIs (Kaggle Nutritional Patterns)
+    dbc.Row(className="mb-5 text-center", children=[
+        dbc.Col(md=3, children=[
+            dbc.Card(style={"backgroundColor": "#f4f9f6", "border": "1px dashed #1b4d3e"}, children=[
+                dbc.CardBody([
+                    html.H3(f"${precio_promedio_global_ars:,.2f}", style={"color": "#4a7564", "fontWeight": "bold"}),
+                    html.P("Precio promedio (ARS)", style={"color": "#7f8c8d", "fontSize": "9pt"})
+                ])
+            ])
+        ]),
+        dbc.Col(md=3, children=[
+            dbc.Card(style={"backgroundColor": "#f4f9f6", "border": "1px dashed #1b4d3e"}, children=[
+                dbc.CardBody([
+                    html.H3(f"${precio_maximo_ars:,.2f}", style={"color": "#4a7564", "fontWeight": "bold"}),
+                    html.P("Precio techo de mercado (ARS)", style={"color": "#7f8c8d", "fontSize": "9pt"})
+                ])
+            ])
+        ]),
+        dbc.Col(md=3, children=[
+            dbc.Card(style={"backgroundColor": "#e8f0ec", "border": "1px solid #8fbc8f"}, children=[
+                dbc.CardBody([
+                    html.H3("-35%", style={"color": "#1b4d3e", "fontWeight": "bold"}),
+                    html.P("Eficiencia en costo de insumos crudos", style={"color": "#7f8c8d", "fontSize": "9pt"})
+                ])
+            ])
+        ]),
+        dbc.Col(md=3, children=[
+            dbc.Card(style={"backgroundColor": "#e8f0ec", "border": "1px solid #8fbc8f"}, children=[
+                dbc.CardBody([
+                    html.H3("0%", style={"color": "#1b4d3e", "fontWeight": "bold"}),
+                    html.P("Grasas Saturadas y Colesterol Base", style={"color": "#7f8c8d", "fontSize": "9pt"})
+                ])
+            ])
+        ])
     ]),
 
     # SECCIÓN 2: EL DIAGNÓSTICO DE MERCADO (Plotly interactivo)
     dbc.Row(className="mb-5", children=[
         dbc.Col(md=12, children=[
-            html.H3("1. Diagnóstico Geográfico: ¿Dónde está la oportunidad?", style={"color": "#1b4d3e", "borderLeft": "5px solid #8fbc8f", "paddingLeft": "10px"}),
-            html.P("Este gráfico interactivo permite al consultor identificar las ciudades con mayor precio promedio por plato, evaluando dónde el poder adquisitivo justifica el desarrollo de menús de autor.", style={"color": "#2c3e50"}),
+            html.H3("1. Diagnóstico geográfico: ¿Dónde está la oportunidad?", style={"color": "#1b4d3e", "borderLeft": "5px solid #8fbc8f", "paddingLeft": "10px"}),
+            html.P("Este gráfico interactivo permite al consultor identificar las ciudades con mayor precio promedio por plato, evaluando dónde el poder adquisitivo justifica el desarrollo de menúes de autor.", style={"color": "#2c3e50"}),
             dbc.Card(style={"padding": "15px", "boxShadow": "0 4px 6px rgba(0,0,0,0.05)"}, children=[
                 dcc.Graph(figure=grafico_barras(df_render, Restaurante.COL_CIUDAD, Restaurante.COL_PRECIO))
             ])
@@ -69,97 +126,41 @@ app.layout = dbc.Container(fluid=True, style={"backgroundColor": "#fcfcfc", "pad
 
     # SECCIÓN 3: ESTRUCTURACIÓN DE COSTOS (Matplotlib y Seaborn en paralelo)
     dbc.Row(className="mb-5", children=[
-        html.H3("2. Ingeniería de Menús: Análisis de Márgenes y Dispersión", style={"color": "#1b4d3e", "borderLeft": "5px solid #8fbc8f", "paddingLeft": "10px", "marginBottom": "20px"}),
+        html.H3("2. Ingeniería de menúes: Análisis de márgenes y dispersión", style={"color": "#1b4d3e", "borderLeft": "5px solid #8fbc8f", "paddingLeft": "10px", "marginBottom": "20px"}),
         
-        # Izquierda: cajas y bigotes
+        # Izquierda: cajas y bigotes (Matplotlib)
         dbc.Col(md=6, children=[
             dbc.Card(style={"padding": "15px", "height": "100%"}, children=[
-                html.H5("Distribución de Precios por Categoría", style={"color": "#4a7564"}),
+                html.H5("Distribución de precios por categoría", style={"color": "#4a7564"}),
                 html.P("Permite comparar si las opciones puramente veganas sostienen un precio competitivo frente a las alternativas vegetarianas tradicionales.", style={"fontSize": "9.5pt", "color": "#7f8c8d"}),
-                html.Img(
-                    src=IMG_BASE64.format(cajas_y_bigotes(df_render, Restaurante.COL_PRECIO, Restaurante.COL_TIPO)),
-                    style={"width": "100%", "borderRadius": "5px"}
-                )
+                html.Div([
+                    html.Img(
+                        src=IMG_BASE64.format(cajas_y_bigotes(df_render, Restaurante.COL_PRECIO, Restaurante.COL_TIPO)),
+                        style={"width": "100%", "borderRadius": "5px"}
+                    )
+                ], style={"textAlign": "center"})
             ])
         ]),
-total_locales = len(df_final_mercado)
-precio_promedio_global = round(df_final_mercado[Restaurante.COL_PRECIO].mean(), 2)
-
-app.layout = html.Div(
-    [
-        html.H1("Plataforma Analítica de Inteligencia Gastronómica Plant-Based", style={'color': '#1b4d3e', 'textAlign': 'center'}),
-        html.P("Herramienta interactiva y estática para la toma de decisiones en consultoría de menús veganos.", style={'textAlign': 'center'}),
-        html.Div(
-    [
-        html.Div(
-            [
-                html.H3(f"{total_locales}", style={"color": "#1b4d3e", "margin": "0"}),
-                html.P("Locales Competidores Analizados", style={"margin": "0", "fontSize": "14px"})
-            ],
-            style={"border": "2px solid #8fbc8f", "padding": "15px", "borderRadius": "8px", "backgroundColor": "#eef5f2", "textAlign": "center", "width": "45%"}
-        ),
-        html.Div(
-            [
-                html.H3(f"${precio_promedio_global} USD", style={"color": "#1b4d3e", "margin": "0"}),
-                html.P("Precio Promedio General", style={"margin": "0", "fontSize": "14px"})
-            ],
-            style={"border": "2px solid #8fbc8f", "padding": "15px", "borderRadius": "8px", "backgroundColor": "#eef5f2", "textAlign": "center", "width": "45%"}
-        ),
-    ],
-    style={"display": "flex", "justify-content": "space-around", "margin": "20px 0"}
-),
         
-        html.H2("Análisis Estático de Precios (Matplotlib)"),
-        html.P("Muestra la distribución de precios y los rangos de mercado de la oferta vegana vs vegetariana:"),
-        html.Div(
-            [
-                html.Img(
-                    src=IMG_BASE64.format(
-                        cajas_y_bigotes(df_render, Restaurante.COL_PRECIO, Restaurante.COL_TIPO)
-                    ),
-                    style={"max-width": "80%", "height": "auto", "margin": "0 auto"}
-                )
-            ],
-            style={"textAlign": "center", "margin-bottom": "30px"} # Centra la imagen y le da espacio abajo
-        ),
-        
-        html.H2("Tendencia y Regresión de Costos (Seaborn)"),
-        html.P("Líneas de tendencia de precios máximos detectados en los registros procesados:"),
-        html.Div(
-            [
-                html.Img(
-                    src=IMG_BASE64.format(
-                        dispersion(
-                            df_render,
-                            Restaurante.COL_TIPO,
-                            'indice_registro',
-                            Restaurante.COL_PRECIO,
-                            {"bottom": 0, "left": 0, "right": len(df_render), "top": df_render[Restaurante.COL_PRECIO].max() + 5}
-                        )
-                    ),
-                    style={"max-width": "80%", "margin": "0 auto"} # Lo centra y le da un tamaño armónico
-                )
-            ],
-            style={"textAlign": "center"},
-        ),
-        
-        # Derecha: gráfico de dispersión Seaborn
+        # Derecha: gráfico de dispersión (Seaborn)
         dbc.Col(md=6, children=[
             dbc.Card(style={"padding": "15px", "height": "100%"}, children=[
-                html.H5("Tendencias y Líneas de Regresión", style={"color": "#4a7564"}),
-                html.P("Mapeo de la estabilidad de precios para detectar anomalías o nichos de mercado sub-explotados.", style={"fontSize": "9.5pt", "color": "#7f8c8d"}),
-                html.Img(
-                    src=IMG_BASE64.format(dispersion(df_render, Restaurante.COL_TIPO, 'indice_registro', Restaurante.COL_PRECIO)),
-                    style={"width": "100%", "borderRadius": "5px"}
-                )
+                html.H5("Tendencias y líneas de regresión", style={"color": "#4a7564"}),
+                html.P("Mapeo de la estabilidad de precios para detectar anomalías o nichos de mercado.", style={"fontSize": "9.5pt", "color": "#7f8c8d"}),
+                html.Div([
+                    html.Img(
+                        src=IMG_BASE64.format(dispersion(df_render, Restaurante.COL_TIPO, 'indice_registro', Restaurante.COL_PRECIO)),
+                        style={"width": "100%", "borderRadius": "5px"}
+                    )
+                ], style={"textAlign": "center"})
             ])
         ])
     ]),
-    
+
     # PIE DE PÁGINA
     dbc.Row(children=[
         dbc.Col(style={"color": "#7f8c8d", "fontSize": "9pt", "marginTop": "20px", "textAlign": "center"}, children=[
-            html.P("© 2026 - Proyecto Académico de Ciencia de Datos Aplicada a la Consultoría Gastronómica Plant-Based")
+            html.P("© 2026 - Proyecto académico de POAD para la consultoría gastronómica vegana")
         ])
     ])
 ])
