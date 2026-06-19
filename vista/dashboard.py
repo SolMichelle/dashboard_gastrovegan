@@ -151,7 +151,7 @@ app.layout = dbc.Container(fluid=True, style={"backgroundColor": "#fcfcfc", "pad
         ])
     ]),
 
-    # SECCIÓN NUEVA: TABLA DE DATOS PANDAS DE PLATOS VEGANIZABLES
+    # SECCIÓN: TABLA DE DATOS PANDAS DE PLATOS VEGANIZABLES
     dbc.Row(className="mb-5", children=[
         dbc.Col(md=12, children=[
             html.H3("3. Catálogo técnico: opciones tradicionales optimizadas de bajo costo", style={"color": "#1b4d3e", "borderLeft": "5px solid #8fbc8f", "paddingLeft": "10px"}),

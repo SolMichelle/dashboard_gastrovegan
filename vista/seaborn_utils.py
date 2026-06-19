@@ -4,7 +4,7 @@ import base64, io, seaborn
 def dispersion(df, series, x, y, limites=None):
     fig, ax = plt.subplots(figsize=(6, 4))
     
-    # Renderizado híbrido scatter + lmplot
+    
     seaborn.scatterplot(data=df, x=x, y=y, hue=series, ax=ax)
     
     plt.title("Línea de Tendencia y Dispersión de Costos ($ ARS)")

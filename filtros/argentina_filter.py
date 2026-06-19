@@ -2,7 +2,7 @@ import pandas as pd
 from esquema.restaurante import Restaurante
 
 # 1. Carga del dataset oficial de datos.gob.ar
-df_gob = pd.read_csv("densidad.csv") # El archivo descargado de tu link
+df_gob = pd.read_csv("densidad.csv") # Este archivo se descartó por mala calidad de datos, pero se deja el código para mostrar el proceso de integración de fuentes
 
 # 2. Renombrado y limpieza según lo visto en clase
 df_gob = df_gob.rename(columns={
