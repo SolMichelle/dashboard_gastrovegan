@@ -2,7 +2,7 @@
 
 Este proyecto desarrolla un **Dashboard analítico e interactivo** diseñado para consultores y dueños de restaurantes tradicionales. Su objetivo principal es mitigar el riesgo comercial y resolver el fenómeno del **"comensal veto"** (pérdida de grupos de clientes porque el local no ofrece opciones veganas reales) mediante la toma de decisiones basada en datos (*Data-Driven*).
 
-La aplicación combina el procesamiento de datos estadísticos con una interfaz visual moderna para justificar la rentabilidad, optimizar costos de materias primas y analizar los precios de la competencia por región geográfica.
+La aplicación combina el procesamiento de datos estadísticos, modelos de Machine Learning y visualizaciones interactivas para justificar la rentabilidad, optimizar costos de materias primas y analizar los precios de la competencia por región geográfica.
 
 ---
 
@@ -14,6 +14,26 @@ El proyecto sigue una estructura estrictamente modular bajo el paradigma de **Pr
 * **Procesamiento y Gobierno de Datos:** `Pandas` para la ingesta, limpieza, normalización y unificación de las fuentes mediante constantes de esquema.
 * **Visualización Estática (Capa de Servidor):** `Matplotlib` y `Seaborn` para la generación automatizada de diagramas de cajas (márgenes) y regresiones lineales exportados dinámicamente en formato `base64`.
 * **Visualización Interactiva y Frontend:** `Dash` y `Plotly Express` combinados con `dash_bootstrap_components` para una interfaz adaptativa bajo la guía de estilo *Eco-Clean*.
+* **Pronóstico y Estadística:** `scipy` y `statsmodels` para la validación de hipótesis y análisis econométrico de costos y márgenes.
+* **Inteligencia Artificial y Machine Learning:** `scikit-learn` (Random Forest Classifier) para la predicción de rangos de rentabilidad en menús optimizados.
+
+---
+
+## 📑 Estructura 
+
+La plataforma se encuentra organizada en dos grandes módulos interactivos:
+
+1. **Pestaña 1 (Diagnóstico y Visualización):**
+   - Tarjetas de KPIs macroeconómicos y equivalencias en Pesos Argentinos ($ ARS).
+   - Estudio de geomarketing interactivo (Score de Oportunidad de Inversión por región).
+   - Análisis técnico estático de dispersión y cajas de precios (Matplotlib y Seaborn).
+   - Matriz analítica de los 20 platos tradicionales adaptados con insumos de bajo costo.
+
+2. **Pestaña 2 (Analítica Avanzada):**
+   - **Módulo de ML:** predicción de rentabilidad de menús optimizados mediante modelos de clasificación.
+   - **Pronóstico Estadístico:** análisis de inferencia y validación de márgenes de ganancia.
+   - **Análisis Nutricional:** comparativa gráfica de perfiles nutricionales basada en fuentes internacionales.
+   - **Buscador Inteligente:** herramienta interactiva en tiempo real para consultar opciones de platos, sustitutos vegetales y costos estimados en ARS.
 
 ---
 
