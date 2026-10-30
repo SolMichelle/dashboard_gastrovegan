@@ -10,4 +10,4 @@ plotly>=5.13.0
 dash>=2.9.0
 dash-bootstrap-components>=1.4.0
 
-# Instalación masiva automatizada: pip install -r requirements.txt
+# Instalación masiva automatizada: pip install -r requerimientos.txt
