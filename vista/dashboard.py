@@ -33,15 +33,15 @@ resumen_stat = analisis_estadistico_ejecutivo()
 df_nutricion = procesar_datos_nutricionales()
 
 # Gráfico nutricional interactivo basado en Food_and_Nutrition.csv
-if not df_nutricion.empty and 'protein' in df_nutricion.columns:
+if not df_nutricion.empty and 'Protein' in df_nutricion.columns:
     fig_nutricion = px.box(
         df_nutricion, 
         x='dieta_es', 
-        y='protein', 
+        y='Protein', 
         color='dieta_es',
-        title="Comparativa de Aporte Proteico por Tipo de Dieta (g)",
-        labels={'dieta_es': 'Tipo de Dieta', 'protein': 'Proteína (g)'},
-        color_discrete_map={'Vegana': '#1b4d3e', 'Vegetariana': '#8fbc8f', 'Omnívora': '#2c3e50'}
+        title="Comparativa de aporte proteico por Tipo de dieta (g)",
+        labels={'dieta_es': 'Tipo de Dieta', 'Protein': 'Proteína (g)'},
+        color_discrete_map={'Vegana': '#1b4d3e', 'Vegetariana': '#8fbc8f', 'Omnívora': '#2c3e50', 'Equilibrada': '#4a7564'}
     )
     fig_nutricion.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
 else:
