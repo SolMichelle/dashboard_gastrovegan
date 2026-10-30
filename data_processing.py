@@ -15,7 +15,7 @@ df_establecimientos = pd.concat([df_veganas, df_vegetarianas], join="inner", ign
 df_final_mercado = df_establecimientos.drop_duplicates(subset=['nombre_local', 'ciudad']).reset_index(drop=True)
 
 # tasa de cambio
-TASA_CAMBIO_ARS = 1455.0
+TASA_CAMBIO_ARS = 1555.0
 
 # nueva columna multiplicando la columna original en USD
 df_final_mercado[Restaurante.COL_PRECIO_ARS] = df_final_mercado[Restaurante.COL_PRECIO] * TASA_CAMBIO_ARS
