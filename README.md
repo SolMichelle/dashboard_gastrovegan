@@ -46,7 +46,8 @@ cd dashboard_gastrovegan
 
 ### 2. Crear y activar un entorno virtual
 python -m venv venv
-* En Windows: venv\Scripts\activate  | En Linux/Mac: source venv/bin/activate
+* En Windows: venv\Scripts\activate
+* En Linux/Mac: source venv/bin/activate
 
 ### 3. Instalar las librerías requeridas
 pip install -r requirements.txt
