@@ -105,18 +105,26 @@ def procesar_datos_nutricionales():
     if df_nutricion.empty:
         return pd.DataFrame()
     
-    columnas_lower = {c: c.lower() for c in df_nutricion.columns}
-    df_nutricion = df_nutricion.rename(columns=columnas_lower)
-    
     mapeo_dietas = {
         'vegan': 'Vegana',
         'vegetarian': 'Vegetariana',
         'omnivore': 'Omnívora',
-        'omnivorous': 'Omnívora'
+        'balanced': 'Equilibrada',
+        'keto': 'Keto',
+        'paleo': 'Paleo'
     }
     
-    if 'diet_type' in df_nutricion.columns:
-        df_nutricion['dieta_es'] = df_nutricion['diet_type'].str.lower().map(mapeo_dietas).fillna('General')
+    col_dieta = next((c for c in df_nutricion.columns if c.strip().lower() == 'dietary preference'), None)
+    
+    if col_dieta:
+        # Convertimos a minúsculas 
+        df_nutricion['dieta_es'] = (
+            df_nutricion[col_dieta]
+            .astype(str)
+            .str.lower()
+            .map(mapeo_dietas)
+            .fillna('Otras / General')
+        )
     else:
         df_nutricion['dieta_es'] = 'General'
         
