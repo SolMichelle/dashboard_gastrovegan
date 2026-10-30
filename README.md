@@ -50,7 +50,7 @@ python -m venv venv
 * En Linux/Mac: source venv/bin/activate
 
 ### 3. Instalar las librerías requeridas
-pip install -r requirements.txt
+pip install -r requerimientos.txt
 
 ### 4. Iniciar la aplicación
 python app.py
